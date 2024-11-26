@@ -24,7 +24,7 @@ int main() {
 			// therefore, only add a candidate that is greater than the previous selected candidate
 			for (candidate = N; candidate >= 1; candidate--)
                 if (move == 1 || candidate > option[move - 1][nopts[move - 1]])
-				    option[move][++nopts[move]] = candidate;
+                    option[move][++nopts[move]] = candidate;
 		} else {
 			// when backtracking, we transition from one combination to the other
 			// thus, we print before everytime we backtrack
