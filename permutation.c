@@ -22,17 +22,17 @@ int main() {
 			if (move > N)
 				for (i = 1; i < move; i++) {
 					printf("%d", option[i][nopts[i]]);
-                    printf(i < move - 1 ? " " : "\n");
-                }
+					printf(i < move - 1 ? " " : "\n");
+				}
 			for (candidate = N; candidate >= 1; candidate--) {
 				for (i = move - 1; i >= 1; i--)
 					if (option[i][nopts[i]] == candidate)
-                        break;
+						break;
 				if (i == 0)
                     option[move][++nopts[move]] = candidate;
 			}
 		} else 
-            nopts[--move]--;
+			nopts[--move]--;
 	}
 	return 0;
 }
