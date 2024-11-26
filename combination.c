@@ -23,15 +23,15 @@ int main() {
 			// thus, it is a good idea to maintain an increasing order (sorted order)
 			// therefore, only add a candidate that is greater than the previous selected candidate
 			for (candidate = N; candidate >= 1; candidate--)
-                if (move == 1 || candidate > option[move - 1][nopts[move - 1]])
-                    option[move][++nopts[move]] = candidate;
+				if (move == 1 || candidate > option[move - 1][nopts[move - 1]])
+					option[move][++nopts[move]] = candidate;
 		} else {
 			// when backtracking, we transition from one combination to the other
 			// thus, we print before everytime we backtrack
 			for (i = 1; i < move; i++) {
 				printf("%d", option[i][nopts[i]]);
-                printf(i < move - 1 ? " " : "\n");
-            }
+				printf(i < move - 1 ? " " : "\n");
+			}
 			// backtrack
 			nopts[--move]--;
 		}
