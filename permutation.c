@@ -29,7 +29,7 @@ int main() {
 					if (option[i][nopts[i]] == candidate)
 						break;
 				if (i == 0)
-                    option[move][++nopts[move]] = candidate;
+					option[move][++nopts[move]] = candidate;
 			}
 		} else 
 			nopts[--move]--;
