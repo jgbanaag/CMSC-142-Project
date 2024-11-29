@@ -11,25 +11,30 @@ int subset_sum(int a[], int N, int target) {
     int max_sum = 0, i, j;
     for (i = 0; i < N; i++)
         max_sum += a[i];
+    // dp[i][j] = 1 if it is possible to get the sum j using the first i elements, 0 otherwise
+    // previous[j] = a[i] => dp[i][j] = 1 and dp[i - 1][j - a[i]] = 1
     int dp[2][max_sum + 1], previous[max_sum + 1];
     for (i = 0; i <= N; i++)
         for (j = 0; j <= max_sum; j++)
             dp[i & 1][j] = 0;
+    for (j = 0; j <= max_sum; j++)
+        previous[j] = -1;
     dp[0][0] = 1;
     for (i = 0; i < N; i++)
-        for (j = 0; j <= max_sum; j++) {
+        for (j = max_sum; j >= 0; j--) {
             // first case is don't take a[i]
-            dp[i & 1 ^ 1][j] = dp[i & 1][j];
+            dp[(i & 1) ^ 1][j] = dp[i & 1][j];
             // second case is take a[i]
             if (j >= a[i]) {
-                dp[i & 1 ^ 1][j] |= dp[i & 1][j - a[i]];
-                // set the last element that makes the sum j to be a[i]
-                previous[j] = a[i];
+                dp[(i & 1) ^ 1][j] |= dp[i & 1][j - a[i]];
+                // set the last element that makes the sum j to be a[i] if it is possible to make j - a[i]
+                if (previous[j] == -1 && dp[i & 1][j - a[i]])
+                    previous[j] = a[i];
             }
         }
-    // retrieve the subset the sums to the target
     if (!dp[N & 1][target])
         return 0;
+    // if the target sum is achievable, retrieve the subset that sums to it
     printf("%d = ", target);
     int current_sum = target;
     while (current_sum > 0) {
