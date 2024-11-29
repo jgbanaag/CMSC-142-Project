@@ -6,22 +6,21 @@
 
 #include <stdio.h>
 
+#define MAX_SUM 1000
+
 // a function that takes in an array of integers of length N and a target sum
 int subset_sum(int a[], int N, int target) { 
-    int max_sum = 0, i, j;
-    for (i = 0; i < N; i++)
-        max_sum += a[i];
     // dp[i][j] = 1 if it is possible to get the sum j using the first i elements, 0 otherwise
-    // previous[j] = a[i] => dp[i][j] = 1 and dp[i - 1][j - a[i]] = 1
-    int dp[2][max_sum + 1], previous[max_sum + 1];
+    // previous[j] = a[i] => i is minimized and dp[i][j] = 1 and dp[i - 1][j - a[i]] = 1
+    int dp[2][MAX_SUM + 1], previous[MAX_SUM + 1], i, j;
     for (i = 0; i <= N; i++)
-        for (j = 0; j <= max_sum; j++)
+        for (j = 0; j <= MAX_SUM; j++)
             dp[i & 1][j] = 0;
-    for (j = 0; j <= max_sum; j++)
+    for (j = 0; j <= MAX_SUM; j++)
         previous[j] = -1;
     dp[0][0] = 1;
     for (i = 0; i < N; i++)
-        for (j = max_sum; j >= 0; j--) {
+        for (j = 0; j <= MAX_SUM; j++) {
             // first case is don't take a[i]
             dp[(i & 1) ^ 1][j] = dp[i & 1][j];
             // second case is take a[i]
