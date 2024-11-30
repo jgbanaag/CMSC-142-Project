@@ -8,8 +8,8 @@
 
 // a function that takes in an array of integers of length N and a target sum
 int subset_sum(int a[], int N, int target) { 
-    // dp[i][j] = 1 if it is possible to get the sum j using the first i elements, 0 otherwise
-    // previous[j] = a[i] => i is minimized and dp[i][j] = 1 and dp[i - 1][j - a[i]] = 1
+    // dp[j] = 1 if it is possible to get the sum j using the first i elements, 0 otherwise
+    // previous[j] = a[i] => i is minimized and dp[j] = 1 and dp[j - a[i]] = 1
     int dp[target + 1], previous[target + 1], i, j;
     for (j = 0; j <= target; j++)
         dp[j] = 0;
@@ -17,6 +17,7 @@ int subset_sum(int a[], int N, int target) {
         previous[j] = -1;
     dp[0] = 1;
     for (i = 0; i < N; i++) {
+        // reverse sum processing so that dp[j] only depends on the previous iteration's values
         for (j = target; j >= 0; j--) {
             // take a[i] case
             if (j >= a[i]) {
