@@ -10,29 +10,29 @@
 int subset_sum(int a[], int N, int target) { 
     // dp[i][j] = 1 if it is possible to get the sum j using the first i elements, 0 otherwise
     // previous[j] = a[i] => i is minimized and dp[i][j] = 1 and dp[i - 1][j - a[i]] = 1
-    int dp[N + 1][target + 1], previous[target + 1], i, j;
+    int dp[2][target + 1], previous[target + 1], i, j;
     for (i = 0; i <= N; i++)
         for (j = 0; j <= target; j++)
-            dp[i][j] = 0;
+            dp[i & 1][j] = 0;
     for (j = 0; j <= target; j++)
         previous[j] = -1;
     dp[0][0] = 1;
     for (i = 0; i < N; i++) {
         for (j = 0; j <= target; j++) {
             // first case is don't take a[i]
-            dp[i + 1][j] = dp[i][j];
+            dp[(i & 1) ^ 1][j] = dp[i & 1][j];
             // second case is take a[i]
             if (j >= a[i]) {
-                dp[i + 1][j] |= dp[i][j - a[i]];
+                dp[(i & 1) ^ 1][j] |= dp[i & 1][j - a[i]];
                 // set the last element that makes the sum j to be a[i] if it is possible to make j - a[i]
-                if (previous[j] == -1 && dp[i][j - a[i]])
+                if (previous[j] == -1 && dp[i & 1][j - a[i]])
                     previous[j] = a[i];
             }
-            printf("%d ", dp[i + 1][j]);
+            printf("%d ", dp[(i & 1) ^ 1][j]);
         }
         printf("\n");
     }
-    if (!dp[N][target])
+    if (!dp[N & 1][target])
         return 0;
     // if the target sum is achievable, retrieve the subset that sums to it
     printf("%d = ", target);
