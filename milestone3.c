@@ -76,7 +76,6 @@ int subset_sum(int a[], int N, int b[], int M, int target) {
                         printf(")\n");
                 }
                 printf("\n");
-
                 found++;
             }
             nopts[--move]--;
