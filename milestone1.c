@@ -18,6 +18,8 @@ int subset_sum(int a[], int N, int target) {
             for (candidate = N; candidate >= 1; candidate--)
                 if (move == 1 || candidate > option[move - 1][nopts[move - 1]])
                     option[move][++nopts[move]] = candidate;
+                else
+                    break;
         } else {
             // since before a backtrack, we get a unique combination
             // we use the combination as indices to generate a subset

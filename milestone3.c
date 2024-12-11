@@ -38,6 +38,8 @@ int subset_sum(int a[], int N, int b[], int M, int target) {
             for (candidate = N - M; candidate >= 1; candidate--)
                 if (move == 1 || candidate > option[move - 1][nopts[move - 1]])
                     option[move][++nopts[move]] = candidate;
+                else
+                    break;
         } else {
             int sum = 0;
             for (i = 1; i < move; i++)
@@ -85,6 +87,7 @@ int subset_sum(int a[], int N, int b[], int M, int target) {
 }
     
 int main() {
+    printf("%d", INF);
     int N;
     printf("N: ");
     scanf("%d", &N);
