@@ -28,9 +28,7 @@ int subset_sum(int a[], int N, int target) {
                 if (previous[j] == -1 && dp[i][j - a[i]])
                     previous[j] = a[i];
             }
-            printf("%d ", dp[i + 1][j]);
         }
-        printf("\n");
     }
     if (!dp[N][target])
         return 0;

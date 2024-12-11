@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 
-#define INF 0xFFFFFFFF
+#define INF 1000000
 
 // a function that takes in an array of integers of length N and a target sum
 // it prints the distinct subsets that sum to the target and returns the number of such subsets
@@ -87,7 +87,6 @@ int subset_sum(int a[], int N, int b[], int M, int target) {
 }
     
 int main() {
-    printf("%d", INF);
     int N;
     printf("N: ");
     scanf("%d", &N);
