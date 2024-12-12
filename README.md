@@ -31,7 +31,7 @@ This document compares the backtracking approach and the dynamic programming app
 - Assumptions and limitations on input
 
 ### 8. `milestone0_tracing.pdf`
-This document explains the functionality of `milestone0.c` in detail by tracing the execution of the code with an input of \(N = 4\). It provides insights into the backtracking process and the subsets generated.
+This document explains the functionality of `milestone0.c` in detail by tracing the execution of the code with an input of \(N = 4\).
 
 ## How to Run the Programs
 To compile and run any of the C programs, use the following command:
